@@ -1,11 +1,11 @@
-service:
+services:
   mysql:
     image: mysql:8.0
     container_name: mysql_db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: db_olaso
+      MYSQL_DATABASE: db_hospiscan
       MYSQL_USER: user
       MYSQL_PASSWORD: root
     volumes:
@@ -20,7 +20,7 @@ service:
     container_name: backend
     ports:
       - '3001:3001'
-    depend_on:
+    depends_on:
       - mysql
 
 
@@ -31,8 +31,6 @@ service:
     container_name: frontend
     ports:
       - '3000:3000'
-    depend_on:
+    depends_on:
       - backend
 
-  volumenes:
-    ./mysql:
